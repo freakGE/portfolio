@@ -247,7 +247,7 @@ const Project = ({
         ${
           focusDetails
             ? `
-            sm:hover:scale-[85%]
+            hover:scale-100 sm:hover:scale-[85%]
 
             ${width <= 1024 && `backdrop-blur`}
             ${
