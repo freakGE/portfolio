@@ -14,7 +14,7 @@ const Highlight = props => {
         <AnimatePresence>
           <motion.div
             className={`
-            ${props.title && `text-3xl`}
+            ${props.title && `sm:text-3xl  text-2xl`}
             ${(props.title || props.navbar) && "text-white"} ${
               word !== text[0] && props.title === undefined
                 ? "xl:ml-0 ml-6"

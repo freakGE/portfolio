@@ -41,7 +41,7 @@ const Home = () => {
               transition={{ duration: 2 }}
             >
               <header
-                className={`flex flex-col items-start mb-3 max-w-3xl text-5xl lg:mb-0 text-primary lg:items-center lg:flex-row`}
+                className={`flex flex-col items-start mb-3 max-w-3xl text-4xl tiny:text-[2.5rem] extra-small:text-5xl lg:mb-0 text-primary lg:items-center lg:flex-row`}
               >
                 <AnimatePresence>
                   <div
