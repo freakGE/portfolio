@@ -55,7 +55,7 @@ const ArrowUp = () => {
               type: "spring",
               bounce: 0.4,
             }}
-            className={`flex fixed bottom-4 justify-center items-center w-12 h-12 rounded-full cursor-pointer arrowUp z-[50] bg-secondary`}
+            className={`flex fixed bottom-4 justify-center items-center w-12 h-12 rounded-full cursor-pointer select-none arrowUp z-[50] bg-secondary`}
           >
             <motion.div
               className={`flex relative justify-center items-center w-10 h-8`}
