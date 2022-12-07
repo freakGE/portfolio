@@ -22,4 +22,5 @@
 - [Framer-Motion](https://www.framer.com/motion/)
 - [Styled-Components](https://styled-components.com/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Nodemailer](https://nodemailer.com/about/)
