@@ -77,7 +77,26 @@ export default function Main() {
       <Head>
         <title>Saba Esebua</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:title" content="My Portofilio" key="title" />
+        {/* Description */}
+        <meta name="author" content="Saba Esebua" />
+        <meta
+          name="description"
+          content="Front-End Developer Portfolio Website."
+        />
+        <meta
+          name="keywords"
+          content="saba, esebua, saba esebua, portfolio, front-end developer"
+        />
+        {/* Open Graph data */}
+        <meta property="og:title" content="Saba Esebua" />
+        <meta
+          property="og:description"
+          content="Front-End Developer Portfolio Website."
+        />
+        <meta
+          property="og:image"
+          content="https://portfolio-freakge.vercel.app/thumbnail-portfolio.png"
+        />
       </Head>
       {isPreLoading ? (
         <PreLoad isVisible={preloadIsVisible} />
