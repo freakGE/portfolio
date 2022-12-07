@@ -7,8 +7,6 @@
   <h1 align="center">Portfolio</h1>
 
   <h3 align="center">
-    Built with <a href="https://nextjs.org/"><strong>Next.js</strong></a>
-    <br />
     <a href="https://portfolio-freakge.vercel.app/">View Demo</a>
   </h3>
 
