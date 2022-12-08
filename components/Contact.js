@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { BiErrorAlt } from "react-icons/bi";
 import { FiGithub } from "react-icons/fi";
+import { IoPaperPlane } from "react-icons/io5";
 
 import Topic from "./Topic";
 import Link from "next/link";
@@ -26,6 +27,16 @@ const Contact = () => {
   const [emailTooltip, setEmailTooltip] = useState(false);
   const [messageTooltip, setMessageTooltip] = useState(false);
 
+  const [messageSending, setMessageSending] = useState(false);
+  const [planeAnimation, setPlaneAnimation] = useState(null);
+  const [lastMessage, setLastMessage] = useState({});
+
+  useEffect(() => {
+    setMessage(null);
+    setMessageSending(false);
+    setPlaneAnimation(null);
+  }, [formState]);
+
   useEffect(() => {
     if (!bottomOfContact) return;
     setTimeout(() => {
@@ -33,6 +44,15 @@ const Contact = () => {
       setTimeout(() => setCatInAir(false), 300);
     }, 500);
   }, [bottomOfContact]);
+
+  useEffect(() => {
+    if (!message || !messageSending) return;
+    setPlaneAnimation(true);
+    setTimeout(() => {
+      setMessageSending(false);
+      setPlaneAnimation(null);
+    }, 1000);
+  }, [message]);
 
   const validateEmail = email => {
     return String(email)
@@ -48,6 +68,9 @@ const Contact = () => {
   };
 
   const handleSubmit = async () => {
+    if (lastMessage === formState) return;
+    if (invalidEmail === false) setMessageSending(true);
+
     try {
       if (invalidEmail)
         throw {
@@ -72,7 +95,9 @@ const Contact = () => {
             message: res.statusText,
           };
         }
+
         setMessage(`Message sent successfully`);
+        setLastMessage(formState);
         setFailedMessage(false);
 
         return res.json();
@@ -374,7 +399,7 @@ const Contact = () => {
             )}
           </AnimatePresence>
         </div>
-        <motion.div
+        <div
           onMouseDown={() => {
             setSubmitHover(true);
             setTimeout(() => setSubmitHover(false), 650);
@@ -382,41 +407,58 @@ const Contact = () => {
           onMouseEnter={() => setSubmitHover(true)}
           onMouseLeave={() => setSubmitHover(false)}
           onClick={handleSubmit}
-          className="mt-4 duration-[700ms] text-primary font-semibold px-4 py-[0.4rem] relative flex items-center overflow-hidden z-0 cursor-pointer text-xl"
+          className="flex relative justify-center items-center mt-4 cursor-pointer"
         >
-          Submit
+          <AnimatePresence>
+            {messageSending === true && (
+              <motion.span
+                className={`absolute z-[1] text-[2rem] text-primary duration-500   ${
+                  planeAnimation ? "animation-fly" : "animation-shake"
+                }`}
+              >
+                <IoPaperPlane />
+              </motion.span>
+            )}
+          </AnimatePresence>
           <motion.div
-            initial={{ y: 150 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-            className=" w-full h-full absolute -z-[1] "
+            className={`duration-[700ms] text-primary font-semibold px-4 py-[0.4rem] relative flex items-center overflow-hidden z-0 cursor-pointer text-xl ${
+              messageSending === true && `text-transparent`
+            }`}
           >
-            <motion.span
-              initial={{ scale: 1, x: 0 }}
-              animate={
-                submitHover
-                  ? { scale: 3, rotate: 50 }
-                  : { scale: 1, x: -72.5, rotate: 50 } //x -65
-              }
-              transition={{
-                duration: 0.5,
-              }}
-              className="-z-[1] absolute w-full h-full bg-secondary"
-            />
-            <motion.span
-              initial={{ scale: 1, x: 250 }}
-              animate={
-                submitHover
-                  ? { scale: 3, x: 0, rotate: 50 }
-                  : { scale: 1, x: 42.5, rotate: 50 } //x 35
-              }
-              transition={{
-                duration: 0.5,
-              }}
-              className="-z-[1] absolute w-full h-full bg-secondary"
-            />
+            Submit
+            <motion.div
+              initial={{ y: 150 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.5 }}
+              className=" w-full h-full absolute -z-[1] "
+            >
+              <motion.span
+                initial={{ scale: 1, x: 0 }}
+                animate={
+                  submitHover || messageSending
+                    ? { scale: 3, rotate: 50 }
+                    : { scale: 1, x: -72.5, rotate: 50 } //x -65
+                }
+                transition={{
+                  duration: 0.5,
+                }}
+                className="-z-[1] absolute w-full h-full bg-secondary"
+              />
+              <motion.span
+                initial={{ scale: 1, x: 250 }}
+                animate={
+                  submitHover || messageSending
+                    ? { scale: 3, x: 0, rotate: 50 }
+                    : { scale: 1, x: 42.5, rotate: 50 } //x 35
+                }
+                transition={{
+                  duration: 0.5,
+                }}
+                className="-z-[1] absolute w-full h-full bg-secondary"
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
         <div className=" relative flex items-center flex-col w-full pt-[12.5rem] pb-[1.25rem] text-primary">
           <AnimatePresence>
             {failedMessage === false && (
