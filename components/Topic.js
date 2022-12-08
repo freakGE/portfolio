@@ -9,7 +9,7 @@ const Topic = ({ topic }) => {
 
   return (
     <motion.div className="overflow-hidden title-container">
-      <h1 className="relative title">
+      <h1 className="relative title md:ml-[3rem]">
         <Highlight text={topic} hide={true} title={true} />
         <div className="absolute bottom-2.5 z-[-1] w-full border border-dark-primary" />
       </h1>

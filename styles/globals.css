@@ -435,7 +435,7 @@ body {
 }
 
 .title {
-  @apply z-[1] font-semibold flex justify-center items-center px-3 md:ml-[4rem] text-2xl;
+  @apply z-[1] font-semibold flex justify-center items-center px-3 text-2xl;
 }
 
 .title-line {

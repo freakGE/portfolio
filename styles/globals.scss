@@ -321,7 +321,7 @@ body {
   @apply relative flex justify-center md:justify-start items-center w-full mb-6;
 }
 .title {
-  @apply z-[1] font-semibold flex justify-center items-center px-3 md:ml-[4rem] text-2xl;
+  @apply z-[1] font-semibold flex justify-center items-center px-3 text-2xl;
 }
 .title-line {
   @apply z-0 absolute bottom-2.5 border border-dark-mixed w-full;
