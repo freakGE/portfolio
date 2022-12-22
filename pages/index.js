@@ -60,9 +60,6 @@ export default function Main() {
       return;
     }
 
-    if (choosenSection === "contact")
-      console.log(`${scrollIntoSection}, ${choosenSection}`);
-
     window.scroll({
       top: scrollIntoSection,
       left: 0,
