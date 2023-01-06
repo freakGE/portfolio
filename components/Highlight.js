@@ -25,9 +25,9 @@ const Highlight = props => {
             } relative ${
               props.title === undefined && "mr-3"
             } duration-150 z-0  flex justify-center items-center
-            ${props.small !== undefined && "max-w-max lg:w-full"}
             ${props.inLine === true && "mr-0"}
-            
+            ${props.small !== undefined && "max-w-max lg:w-full"}
+            ${props.smallExtra === true && "projectTitle"}
             `}
             onMouseEnter={() => {
               setFullHeight(word);

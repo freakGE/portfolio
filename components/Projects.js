@@ -6,10 +6,11 @@ const Projects = () => {
     <section className="wrapper-container min-h-[20rem]">
       <div className="wrapper topic projects-container">
         <Topic topic="Some Things I've Built" />
-        <div className="flex flex-col gap-y-36 mt-7 sm:gap-y-8 lg:gap-y-16">
+        <div className="flex flex-col gap-y-24 mt-7 2tiny:gap-y-36 sm:gap-y-8 lg:gap-y-16">
           <Project
             toRight={true}
             name="Michelangelo Exhibition"
+            smallExtra={true}
             image={`thumbnail-michelangelo.png`}
             imageAlt={"Michelangelo exhibition thumbnail"}
             description=" The idea was to create a website dedicated to the Michelangelo exhibition. The project includes his biography and art collection."

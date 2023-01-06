@@ -37,6 +37,7 @@ module.exports = {
     },
     screens: {
       tiny: "360px",
+      "2tiny": "420px",
 
       "extra-small": "530px",
 

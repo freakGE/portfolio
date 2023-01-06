@@ -522,3 +522,16 @@ body {
     rotate: 15deg;
   }
 }
+
+.projectTitle {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  @media (width >= 400px) {
+    font-size: 1.5rem;
+  }
+  @apply sm:text-[1.65rem] lg:text-3xl;
+}
+
+.projectImage {
+  @apply h-[250px] 2tiny:min-h-full max-h-[353px] w-full max-w-[529px];
+}

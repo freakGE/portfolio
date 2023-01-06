@@ -682,4 +682,18 @@ body {
     opacity: 0%;
     rotate: 15deg;
   }
+}
+.projectTitle {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  @apply sm:text-[1.65rem] lg:text-3xl;
+}
+@media (width >= 400px) {
+  .projectTitle {
+    font-size: 1.5rem;
+  }
+}
+
+.projectImage {
+  @apply h-[250px] 2tiny:min-h-full max-h-[353px] w-full max-w-[529px];
 }/*# sourceMappingURL=globals.css.map */

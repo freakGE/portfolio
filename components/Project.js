@@ -21,6 +21,7 @@ import { changeCursor } from "../slices/cursorSlice";
 const Project = ({
   toRight,
   name,
+  smallExtra,
   image,
   imageAlt,
   description,
@@ -41,7 +42,9 @@ const Project = ({
     `hover:delay-150 hover:scale-90`
   );
   const [nonFocusStyle, setNonFocusStyle] = useState(
-    `cursor-s-resize scale-95 hover:translate-y-[50%]`
+    `cursor-s-resize scale-95 hover:translate-y-[25%]
+     2tiny:hover:translate-y-[50%]
+    `
   );
   const [focusStyleDisabled, setFocusStyleDisabled] = useState(false);
 
@@ -174,16 +177,13 @@ const Project = ({
       <motion.div
         onMouseEnter={() => dispatch(changeCursor("image"))}
         onMouseLeave={() => dispatch(changeCursor("default"))}
-        className={`absolute overflow-hidden bg-primary max-h-[353px] min-h-full w-full max-w-[529px] duration-${durationImages} z-[${imagesIndex}]
+        className={`absolute overflow-hidden bg-primary projectImage duration-${durationImages} z-[${imagesIndex}]
         sm:w-4/5 ${toRight ? `sm:left-0` : `sm:right-0`} sm:translate-y-0
         ${
           focusImage
-            ? `${!focusStyleDisabled ? focusStyle : null} ${
-                blur ? `${blurStrength}` : null
-              }`
-            : !focusStyleDisabled
-            ? nonFocusStyle
-            : null
+            ? `${!focusStyleDisabled && focusStyle} 
+               ${blur && blurStrength}`
+            : !focusStyleDisabled && nonFocusStyle
         } 
         ${
           focusImage
@@ -195,7 +195,7 @@ const Project = ({
             }
             ${
               blur
-                ? `sm:mt-0 translate-y-[110%] sm:translate-y-[0%] ${
+                ? `sm:mt-0 translate-y-[130%] 2tiny:translate-y-[110%] sm:translate-y-[0%] ${
                     toRight ? "images-left" : "images-right"
                   }
                 `
@@ -205,11 +205,10 @@ const Project = ({
             `
             : `
             lg:scale-100 hover:delay-700
-            ${focusStyleDisabled ? `delay-[2000ms]` : null} 
-            translate-y-[25%]    ${
+            ${focusStyleDisabled && `delay-[2000ms]`} 
+            translate-y-[50%] 2tiny:translate-y-[25%] ${
               toRight ? "sm:translate-x-[-2.5%]" : "sm:translate-x-[2.5%]"
-            }  lg:translate-x-[0%] hover:sm:translate-y-0
-
+            } lg:translate-x-[0%] hover:sm:translate-y-0
             ${
               toRight
                 ? "hover:sm:translate-x-[-7%]"
@@ -258,7 +257,7 @@ const Project = ({
             ${width < 1024 && `backdrop-blur`}
             ${
               blur
-                ? `translate-y-[100%]  ${
+                ? `translate-y-[85%] 2tiny:translate-y-[100%]  ${
                     toRight ? "details-right" : "details-left"
                   } 
                 `
@@ -276,7 +275,10 @@ const Project = ({
                     toRight ? "sm:translate-x-[-50%]" : "sm:translate-x-[50%]"
                   } hover:delay-[0]`
                 : `
-                  ${!focusStyleDisabled && `translate-y-[25%]`}
+                  ${
+                    !focusStyleDisabled &&
+                    `translate-y-[9%] 2tiny:translate-y-[25%]`
+                  }
                   ${
                     toRight ? "sm:translate-x-[7.5%]" : "sm:translate-x-[-7.5%]"
                   }`
@@ -298,6 +300,7 @@ const Project = ({
           <Highlight
             duration={0.4}
             text={name}
+            smallExtra={smallExtra}
             hide={true}
             small={true}
             dot={true}
