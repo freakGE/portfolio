@@ -14,6 +14,7 @@ import { scrollToSection } from "../slices/routerSlice";
 import { openHamburger } from "../slices/hamburgerSlice";
 
 import { useRouter } from "next/router";
+import Cursor from "../components/Cursor";
 
 export default function Main() {
   const { asPath } = useRouter();
@@ -99,6 +100,7 @@ export default function Main() {
         <PreLoad isVisible={preloadIsVisible} />
       ) : (
         <div className={`${hamburgerIsOpen ? "h-screen overflow-clip" : null}`}>
+          <Cursor />
           <Navbar />
 
           <Home />

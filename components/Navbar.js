@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openHamburger } from "../slices/hamburgerSlice";
 import { scrollToSection } from "../slices/routerSlice";
+import { changeCursor } from "../slices/cursorSlice";
 
 import Highlight from "./Highlight";
 import IconMenu from "./IconMenu";
@@ -20,7 +21,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const hamburgerIsOpen = useSelector(state => state.hamburger.hamburgerIsOpen);
-  const choosenSection = useSelector(state => state.section.choosenSection);
 
   const [hamburgerHover, setHamburgerHover] = useState(false);
   const [hamburgerClick, setHamburgerClick] = useState(false);
@@ -107,7 +107,11 @@ const Navbar = () => {
             }
             transition={{ duration: 0.5 }}
           >
-            <Link href="/">
+            <Link
+              href="/"
+              onMouseEnter={() => dispatch(changeCursor("navbar"))}
+              onMouseLeave={() => dispatch(changeCursor("default"))}
+            >
               <motion.div>
                 <Logo
                   size="5"
@@ -122,6 +126,8 @@ const Navbar = () => {
                 onClick={() => {
                   dispatch(scrollToSection("about"));
                 }}
+                onMouseEnter={() => dispatch(changeCursor("navbar"))}
+                onMouseLeave={() => dispatch(changeCursor("default"))}
               >
                 <Highlight text="About" duration="3" navbar={true} />
               </Link>
@@ -130,6 +136,8 @@ const Navbar = () => {
                 onClick={() => {
                   dispatch(scrollToSection("projects"));
                 }}
+                onMouseEnter={() => dispatch(changeCursor("navbar"))}
+                onMouseLeave={() => dispatch(changeCursor("default"))}
               >
                 <Highlight text="Projects" duration="2" navbar={true} />
               </Link>
@@ -138,10 +146,18 @@ const Navbar = () => {
                 onClick={() => {
                   dispatch(scrollToSection("contact"));
                 }}
+                onMouseEnter={() => dispatch(changeCursor("navbar"))}
+                onMouseLeave={() => dispatch(changeCursor("default"))}
               >
                 <Highlight text="Contact" duration="1.5" navbar={true} />
               </Link>
-              <Link href="Resume.pdf" target="_blank" rel="noreferrer noopener">
+              <Link
+                onMouseEnter={() => dispatch(changeCursor("navbar"))}
+                onMouseLeave={() => dispatch(changeCursor("default"))}
+                href="Resume.pdf"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <motion.div
                   onMouseEnter={() => {
                     setResumeHover(true);

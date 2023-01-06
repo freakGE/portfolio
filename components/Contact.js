@@ -7,8 +7,11 @@ import { IoPaperPlane } from "react-icons/io5";
 import Topic from "./Topic";
 import Link from "next/link";
 import Highlight from "./Highlight";
+import { changeCursor } from "../slices/cursorSlice";
+import { useDispatch } from "react-redux";
 
 const Contact = () => {
+  const dispatch = useDispatch();
   const ref = useRef(null);
   const bottomRef = useRef(null);
 
@@ -286,6 +289,8 @@ const Contact = () => {
                 ? "duration-500 pr-[2.1rem]"
                 : null
             } `}
+            onMouseEnter={() => dispatch(changeCursor("input"))}
+            onMouseLeave={() => dispatch(changeCursor("default"))}
           >
             Your Message
             <AnimatePresence>
@@ -555,7 +560,11 @@ const Contact = () => {
             className="bg-dark-primary py-1.5 z-[0] relative flex items-center justify-center"
             ref={bottomRef}
           >
-            <span className="duration-500 text-primary hover:text-secondary">
+            <span
+              className="duration-500 text-primary hover:text-secondary"
+              onMouseEnter={() => dispatch(changeCursor("input"))}
+              onMouseLeave={() => dispatch(changeCursor("default"))}
+            >
               <Link href="mailto:esebua154@gmail.com">esebua154@gmail.com</Link>
             </span>
             <span className="absolute top-0 w-[1.6rem] h-0.5 bg-dark-secondary"></span>

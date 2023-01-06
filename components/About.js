@@ -1,10 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeCursor } from "../slices/cursorSlice";
 import Highlight from "./Highlight";
 import Topic from "./Topic";
 
 const About = () => {
+  const dispatch = useDispatch();
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -12,12 +16,14 @@ const About = () => {
 
   const mySkills = [
     "JavaScript (ES6+)",
+    "TypeScript",
+    "Node.js",
+    "Next.js",
+    "React.js",
+    "Redux (Toolkit)",
     "HTML",
     "CSS/SCSS",
     "Tailwind CSS",
-    "React",
-    "Redux (Toolkit)",
-    "Node.js",
   ];
   useEffect(() => setMySkillsArray(mySkills), []);
 
@@ -36,14 +42,30 @@ const About = () => {
       <div className={`wrapper topic`}>
         <Topic topic="About Me" />
 
-        <div className="text-lg text-gray-300">
+        <div
+          className="text-lg text-gray-300"
+          onMouseEnter={() => dispatch(changeCursor("text"))}
+          onMouseLeave={() => dispatch(changeCursor("default"))}
+        >
           My name is Saba Esebua, and I'm a{" "}
-          <span className="highlight-topic">
-            <Highlight duration={0.4} text="React" small={true} inLine={true} />
+          <span
+            className="highlight-topic"
+            onMouseLeave={() => dispatch(changeCursor("text"))}
+          >
+            <Highlight
+              duration={0.4}
+              text="React.js"
+              small={true}
+              inLine={true}
+            />
           </span>{" "}
           developer with a year and a half of experience. My goals for now are
           to maximize skills in{" "}
-          <span className="highlight-topic" ref={ref}>
+          <span
+            className="highlight-topic"
+            ref={ref}
+            onMouseLeave={() => dispatch(changeCursor("text"))}
+          >
             <Highlight
               duration={0.4}
               text="Front-End"
@@ -52,7 +74,10 @@ const About = () => {
             />
           </span>{" "}
           development and, in the meantime, get a solid understanding of{" "}
-          <span className="highlight-topic">
+          <span
+            className="highlight-topic"
+            onMouseLeave={() => dispatch(changeCursor("text"))}
+          >
             <Highlight
               duration={0.4}
               text="Back-End"
@@ -65,10 +90,15 @@ const About = () => {
         </div>
 
         <div className="flex flex-col mt-4 text-lg text-gray-300">
-          <p>Here are a few technologies I’ve been working with recently:</p>
+          <p
+            onMouseEnter={() => dispatch(changeCursor("text"))}
+            onMouseLeave={() => dispatch(changeCursor("default"))}
+          >
+            Here are a few technologies I've been working with recently:
+          </p>
           <div className="flex justify-center sm:justify-start sm:ml-4">
-            <ul className="grid grid-cols-2 gap-x-7 w-max extra-small:gap-x-10">
-              {sortSkills.map((skill, i) => {
+            <ul className="grid grid-cols-2 gap-x-7 w-max extra-small:grid-cols-3 extra-small:gap-x-10">
+              {mySkills.map((skill, i) => {
                 let text = skill;
                 let bracket, wordOne, wordTwo;
                 if (skill.includes("(")) {

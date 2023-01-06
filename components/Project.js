@@ -15,6 +15,8 @@ import { MdExpandMore } from "react-icons/md";
 import Highlight from "./Highlight";
 import useWindowDimensions from "./WindowDimensions";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { changeCursor } from "../slices/cursorSlice";
 
 const Project = ({
   toRight,
@@ -26,6 +28,7 @@ const Project = ({
   demo,
   code,
 }) => {
+  const dispatch = useDispatch();
   const ref = useRef(null);
   const animation = useAnimation();
   const { asPath } = useRouter();
@@ -169,7 +172,9 @@ const Project = ({
       ref={ref}
     >
       <motion.div
-        className={`absolute overflow-hidden bg-primary max-h-[19rem] min-h-[18rem] w-full max-w-[33.5rem] duration-${durationImages} z-[${imagesIndex}]
+        onMouseEnter={() => dispatch(changeCursor("image"))}
+        onMouseLeave={() => dispatch(changeCursor("default"))}
+        className={`absolute overflow-hidden bg-primary max-h-[353px] min-h-full w-full max-w-[529px] duration-${durationImages} z-[${imagesIndex}]
         sm:w-4/5 ${toRight ? `sm:left-0` : `sm:right-0`} sm:translate-y-0
         ${
           focusImage
@@ -213,6 +218,7 @@ const Project = ({
             ${toRight ? "sm:cursor-w-resize" : "sm:cursor-e-resize"}
            `
         }
+        
       `}
         onClick={() => handleImages()}
       >
@@ -227,7 +233,7 @@ const Project = ({
 
         <Image
           src={`/${image}`}
-          layout="fill"
+          fill
           object-fit="cover"
           alt={imageAlt}
           quality={100}
@@ -249,7 +255,7 @@ const Project = ({
             ? `
             hover:scale-100 sm:hover:scale-[85%]
 
-            ${width <= 1024 && `backdrop-blur`}
+            ${width < 1024 && `backdrop-blur`}
             ${
               blur
                 ? `translate-y-[100%]  ${
@@ -304,6 +310,8 @@ const Project = ({
             toRight ? "lg:text-right" : "lg:text-left"
           }
           `}
+          onMouseEnter={() => dispatch(changeCursor("text"))}
+          onMouseLeave={() => dispatch(changeCursor("default"))}
         >
           {description}
         </div>
@@ -312,7 +320,13 @@ const Project = ({
             toRight ? `lg:justify-end` : `lg:justify-start`
           }`}
         >
-          <div className="flex flex-wrap gap-x-2.5 items-center w-max">
+          <div
+            className={`flex gap-x-2.5 items-center w-max flex-wrap ${
+              toRight ? "lg:justify-end" : "lg:justify-start"
+            }`}
+            onMouseEnter={() => dispatch(changeCursor("text"))}
+            onMouseLeave={() => dispatch(changeCursor("default"))}
+          >
             {sortSkills.map((skill, i) => {
               let text = skill;
               let bracket, wordOne, wordTwo, seperator;
@@ -327,7 +341,7 @@ const Project = ({
               return (
                 <div
                   key={i}
-                  className="inline-flex items-center font-medium text-gray-300"
+                  className="inline-flex items-center min-w-max font-medium text-gray-300"
                 >
                   {wordOne ? (
                     <span className="flex items-center">
@@ -350,9 +364,9 @@ const Project = ({
         </div>
 
         <div
-          className={`absolute ${
-            toRight ? "sm:right-2.5" : "sm:left-2.5"
-          } bottom-2 tiny:bottom-6 flex items-center`}
+          className={`absolute sm:static bottom-2 tiny:bottom-6 flex items-center ${
+            toRight ? "justify-end" : "justify-start"
+          }`}
         >
           <span className="px-1.5 py-1 text-3xl duration-300 cursor-pointer hover:text-secondary">
             <Link href={code} target="_blank" rel="noreferrer noopener">

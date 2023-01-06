@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Highlight from "../components/Highlight";
 import useWindowDimensions from "../components/WindowDimensions";
+import { changeCursor } from "../slices/cursorSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const { height, width } = useWindowDimensions();
   const mobileWidth = 530;
 
@@ -48,9 +50,10 @@ const Home = () => {
                     className={`${seperatorShown ? "pr-0" : "pr-5"} ${
                       hamburgerIsOpen ? "static" : "relative"
                     } flex items-center text-left lg:text-right xl:w-full lg:w-32 `}
+                    onMouseEnter={() => dispatch(changeCursor("header"))}
+                    onMouseLeave={() => dispatch(changeCursor("default"))}
                   >
                     Hi, I’m Saba
-                    {/* <AnimatePresence> */}
                     {nicknameShown && (
                       <motion.span
                         className="absolute -bottom-5 right-6 h-full duration-200 xl:static lg:h-fit lg:-right-28 lg:bottom-0 lg:absolute sm:static"
@@ -68,7 +71,6 @@ const Home = () => {
                         </span>
                       </motion.span>
                     )}
-                    {/* </AnimatePresence> */}
                     {seperatorShown && (
                       <motion.div
                         className="hidden seperator-y lg:block"
@@ -95,7 +97,11 @@ const Home = () => {
                 </AnimatePresence>
               </header>
               <div className="px-0 w-full lg:px-32 xl:px-0">
-                <p className="w-4/5 text-xl text-gray-300 sm:w-3/5 lg:w-3/5 lg:ml-2 xl:ml-0 xl:w-3/5">
+                <p
+                  className="w-4/5 text-xl text-gray-300 sm:w-3/5 lg:w-3/5 lg:ml-2 xl:ml-0 xl:w-3/5"
+                  onMouseEnter={() => dispatch(changeCursor("text"))}
+                  onMouseLeave={() => dispatch(changeCursor("default"))}
+                >
                   I like to code things from scratch, and enjoy bringing ideas
                   to life in the browser.
                 </p>
