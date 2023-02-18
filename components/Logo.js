@@ -9,7 +9,7 @@ const Logo = props => {
   const [textIsVisible, setTextIsVisible] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setTextIsVisible(true), 1500);
+    setTimeout(() => setTextIsVisible(true), 900);
   }, []);
 
   return (

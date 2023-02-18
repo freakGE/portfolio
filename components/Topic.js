@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
-import Highlight from "./Highlight";
+import dynamic from "next/dynamic";
+
+// import Highlight from "./Highlight";
+const Highlight = dynamic(() => import("./Highlight"));
+
 import useWindowDimensions from "../components/WindowDimensions";
 
 const Topic = ({ topic }) => {

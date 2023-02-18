@@ -21,9 +21,9 @@ const IconMenu = props => {
             animate={{ x: 0, opacity: 1 }}
             exit={{
               y: -500,
-              transition: { duration: props.scrollUp ? 0.5 : 2 },
+              transition: { duration: props.scrollUp ? 0.25 : 2 },
             }}
-            transition={{ duration: props.scrollUp ? i * 0.5 : i }}
+            transition={{ duration: props.scrollUp ? i * 0.25 : i }}
           ></motion.div>
         );
       })}

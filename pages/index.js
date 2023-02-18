@@ -1,14 +1,15 @@
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 
 import PreLoad from "../components/PreLoad";
-import Navbar from "../components/Navbar";
-import ArrowUp from "../components/ArrowUp";
 import Home from "../components/Home";
 import About from "../components/About";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
+const Navbar = dynamic(() => import("../components/Navbar"));
+const ArrowUp = dynamic(() => import("../components/ArrowUp"));
 
 import { scrollToSection } from "../slices/routerSlice";
 import { openHamburger } from "../slices/hamburgerSlice";
@@ -25,11 +26,7 @@ export default function Main() {
 
   const [isPreLoading, setIsPreLoading] = useState(true);
   const [preloadIsVisible, setPreloadIsVisible] = useState(true);
-  const [preLoadTimer, setPreLoadTimer] = useState(2500);
-
-  const [scrollToAbout, setScrollToAbout] = useState(622);
-  const [scrollToProjects, setScrollToProjects] = useState(1550);
-  const [scrollToContact, setScrollToContact] = useState(3000); //2669
+  const [preLoadTimer, setPreLoadTimer] = useState(1500); //2500
 
   useEffect(() => {
     setTimeout(() => setPreloadIsVisible(false), preLoadTimer);
@@ -37,15 +34,15 @@ export default function Main() {
     setTimeout(() => {
       asPath.includes("#") && dispatch(scrollToSection(asPath.slice(2)));
     }, preLoadTimer + 1000);
-  }, []); //!
+  }, []);
 
   useEffect(() => {
     if (choosenSection === "") return;
 
     let scrollIntoSection;
-    if (choosenSection === "about") scrollIntoSection = scrollToAbout;
-    if (choosenSection === "projects") scrollIntoSection = scrollToProjects;
-    if (choosenSection === "contact") scrollIntoSection = scrollToContact;
+    if (choosenSection === "about") scrollIntoSection = 622;
+    if (choosenSection === "projects") scrollIntoSection = 1550;
+    if (choosenSection === "contact") scrollIntoSection = 5000;
 
     if (hamburgerIsOpen) {
       dispatch(openHamburger(false));
@@ -61,11 +58,13 @@ export default function Main() {
       return;
     }
 
-    window.scroll({
-      top: scrollIntoSection,
-      left: 0,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      window.scroll({
+        top: scrollIntoSection,
+        left: 0,
+        behavior: "smooth",
+      });
+    }, 250);
 
     dispatch(scrollToSection(""));
   }, [choosenSection]);

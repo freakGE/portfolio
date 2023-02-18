@@ -41,7 +41,7 @@ const ModalMenu = ({ isVisible }) => {
                 dispatch(scrollToSection("about"));
               }}
             >
-              <Highlight text="About" duration="3" navbar={true} />
+              <Highlight text="About" duration="2" navbar={true} />
             </Link>
             <Link
               href="#projects"
@@ -49,7 +49,7 @@ const ModalMenu = ({ isVisible }) => {
                 dispatch(scrollToSection("projects"));
               }}
             >
-              <Highlight text="Projects" duration="2" navbar={true} />
+              <Highlight text="Projects" duration="1.5" navbar={true} />
             </Link>
             <Link
               href="#contact"
@@ -57,7 +57,7 @@ const ModalMenu = ({ isVisible }) => {
                 dispatch(scrollToSection("contact"));
               }}
             >
-              <Highlight text="Contact" duration="1.5" navbar={true} />
+              <Highlight text="Contact" duration="1" navbar={true} />
             </Link>
             <Link
               href="Resume.pdf"

@@ -6,7 +6,7 @@ const PreLoad = ({ isVisible }) => {
   const [textIsVisible, setTextIsVisible] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setTextIsVisible(true), 1500);
+    setTimeout(() => setTextIsVisible(true), 1000);
   }, []);
 
   return (
@@ -50,7 +50,7 @@ const PreLoad = ({ isVisible }) => {
                       translateX: 0,
                       translateY: 0,
                     }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.25 }}
                   >
                     <svg
                       viewBox="0 0 141 194"
@@ -80,7 +80,7 @@ const PreLoad = ({ isVisible }) => {
                       translateX: 0,
                       translateY: 0,
                     }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.25 }}
                   >
                     <svg
                       viewBox="0 0 141 194"

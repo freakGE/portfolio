@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
 import Highlight from "../components/Highlight";
-import useWindowDimensions from "../components/WindowDimensions";
+import useWindowDimensions from "./WindowDimensions";
 import { changeCursor } from "../slices/cursorSlice";
 
 const Home = () => {

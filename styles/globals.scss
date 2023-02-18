@@ -441,7 +441,7 @@ body {
   stroke-dasharray: 576;
   stroke-dashoffset: 576;
 
-  animation: draw 1s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  animation: draw 0.75s cubic-bezier(0.55, 0.06, 0.68, 0.19);
   animation-fill-mode: forwards;
 
   filter: drop-shadow(0px 0px 7.5px hsla(345, 100%, 43%, 0.75));

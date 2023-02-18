@@ -4,9 +4,14 @@ import { BiErrorAlt } from "react-icons/bi";
 import { FiGithub } from "react-icons/fi";
 import { IoPaperPlane } from "react-icons/io5";
 
-import Topic from "./Topic";
 import Link from "next/link";
+
+import Topic from "./Topic";
 import Highlight from "./Highlight";
+// import dynamic from "next/dynamic";
+// const Topic = dynamic(() => import("./Topic"));
+// const Highlight = dynamic(() => import("./Highlight"));
+
 import { changeCursor } from "../slices/cursorSlice";
 import { useDispatch } from "react-redux";
 
