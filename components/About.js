@@ -20,6 +20,7 @@ const About = () => {
     "Node.js",
     "Next.js",
     "React.js",
+    "MongoDB",
     "Redux (Toolkit)",
     "HTML",
     "CSS/SCSS",
