@@ -12,7 +12,7 @@ const IconMenu = props => {
       {array.map((line, i) => {
         i++;
         return (
-          <motion.div
+          <motion.span
             key={i}
             className={`duration-300 ${
               props.size ? props.size : "h-1"
@@ -24,7 +24,7 @@ const IconMenu = props => {
               transition: { duration: props.scrollUp ? 0.25 : 2 },
             }}
             transition={{ duration: props.scrollUp ? i * 0.25 : i }}
-          ></motion.div>
+          />
         );
       })}
     </div>

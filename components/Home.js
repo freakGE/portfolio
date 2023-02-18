@@ -22,7 +22,7 @@ const Home = () => {
       setNicknameShown(false);
       setSeperatorShown(true);
       setTitleShown(true);
-    }, 3000);
+    }, 2500);
   }, []);
 
   return (

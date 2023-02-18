@@ -98,19 +98,19 @@ export default function Main() {
       {isPreLoading ? (
         <PreLoad isVisible={preloadIsVisible} />
       ) : (
-        <div className={`${hamburgerIsOpen ? "h-screen overflow-clip" : null}`}>
+        <div className={`${hamburgerIsOpen && "h-screen overflow-clip"}`}>
           <Cursor />
           <Navbar />
 
           <Home />
 
-          {!hamburgerIsOpen ? (
+          {!hamburgerIsOpen && (
             <>
               <About />
               <Projects />
               <Contact />
             </>
-          ) : null}
+          )}
 
           <ArrowUp />
         </div>
