@@ -177,7 +177,7 @@ const Project = ({
       <motion.div
         onMouseEnter={() => dispatch(changeCursor("image"))}
         onMouseLeave={() => dispatch(changeCursor("default"))}
-        className={`absolute overflow-hidden bg-primary projectImage duration-${durationImages} z-[${imagesIndex}]
+        className={`absolute overflow-hidden bg-dark-primary projectImage duration-${durationImages} z-[${imagesIndex}]
         sm:w-4/5 ${toRight ? `sm:left-0` : `sm:right-0`} sm:translate-y-0
         ${
           focusImage
@@ -231,6 +231,7 @@ const Project = ({
         </AnimatePresence>
 
         <Image
+          priority
           src={`/${image}`}
           fill
           object-fit="cover"
