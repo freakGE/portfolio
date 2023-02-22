@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import Cursor from "../components/Cursor";
@@ -8,6 +9,30 @@ const NotFound = () => {
 
   return (
     <>
+      <Head>
+        <title>404 - Page Not Found</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        {/* Description */}
+        <meta name="author" content="Saba Esebua" />
+        <meta
+          name="description"
+          content="Front-End Developer Portfolio Website."
+        />
+        <meta
+          name="keywords"
+          content="saba, esebua, saba esebua, portfolio, front-end developer"
+        />
+        {/* Open Graph data */}
+        <meta property="og:title" content="Saba Esebua" />
+        <meta
+          property="og:description"
+          content="Front-End Developer Portfolio Website."
+        />
+        <meta
+          property="og:image"
+          content="https://portfolio-freakge.vercel.app/thumbnail-portfolio.png"
+        />
+      </Head>
       <Cursor />
       <section className="flex overflow-hidden flex-col justify-center items-center w-screen h-screen bg-dark-primary text-primary">
         <div className="w-[25rem] flex justify-center items-center flex-col gap-y-2">
